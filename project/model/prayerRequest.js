@@ -1,9 +1,10 @@
 let mongoose= require('mongoose');
- let prayerRequestSchema=mongoose.Schema({
+ let prayerRequestSchema= new mongoose.Schema({
     requestedby:{
         type:mongoose.Schema.Types.ObjectId,
         ref:'user',
-        required:true
+        required:true,
+        CreatedAt:{type:Date,default:Date.now()}
 
         
 
@@ -11,7 +12,8 @@ let mongoose= require('mongoose');
     request:{
         type:string,
 
-        trim:true
+        trim:true,
+        required:true
     },
     anonymous:{
         type:Boolean,
@@ -21,10 +23,16 @@ let mongoose= require('mongoose');
     status:{
         type:string,
         enum:['Pending','Accepted','canceled','Active','Archieved'],
-        default:'pending'
+        default:'pending',
+        CreatedAt:{
+            type:Date,
+            default:Date.now
+        }
+          
+        },
 
-    },
-    prayers:[{
+    
+    prayers: [{
         user:{
             type:mongoose.Schema.Types.ObjectId,
             ref:'user'
@@ -39,4 +47,15 @@ let mongoose= require('mongoose');
     
     
  })
- module.exports= mongoose.model('prayerRequest',prayerRequestSchema)
+ prayerRequestSchema.index({requestedby:1})
+ prayerRequestSchema.index({requestedby:1,status:1})
+ prayerRequestSchema.index({prayers:1})
+ prayerRequestSchema.index({request:1})
+ 
+ prayerRequestSchema.methods.numberOfPrayers = function() {
+    return this.prayers.length;
+};
+module.exports= mongoose.model('prayerRequest',prayerRequestSchema);
+     
+
+ 

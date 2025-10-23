@@ -1,6 +1,6 @@
 let mongoose = require('mongoose')
 let bcrypt = require('bcryptjs')
-let userSchema = mongoose.schema({
+let userSchema = new mongoose.schema({
     firstName: {
         type: String,
         required: true,
