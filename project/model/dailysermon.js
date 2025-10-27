@@ -14,7 +14,7 @@ let dailySermonSchema= mongoose.Schema({
  },
  comments:[{ commentedBy:{types:mongoose.Schema.Types.ObjectId,
     ref:'user',
-    required:true
+    
 
 
  },

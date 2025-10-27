@@ -55,7 +55,7 @@ let mongoose= require('mongoose');
  prayerRequestSchema.methods.numberOfPrayers = function() {
     return this.prayers.length;
 };
-module.exports= mongoose.model('prayerRequest',prayerRequestSchema);
+module.exports= mongoose.model('prayerRequest',prayerRequestSchema); 
      
 
  
