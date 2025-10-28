@@ -320,3 +320,31 @@ const eventValidation = {
 
     ]
 }
+const expenseValidation = {
+    create: [
+        body('description')
+            .notEmpty()
+            .isLength({ max: 200 })
+            .withMessage('Enter a description that dont execeed 200 letter'),
+        body('purpose')
+            .notEmpty()
+            .isLength({ max: 100 })
+            .withMessage('Enter a purpose that dont execeed 100 letter'),
+        body('amount')
+            .isNumeric()
+            .withMessage('Enter a valid Number'),
+        body('category')
+            .notEmpty()
+            .isLength({ max: 50, min: 5 })
+            .withMessage('Enter a valid category that dont execeed 50 letter and not less than 5 letters'),
+        body('status')
+            .optional()
+            .isIn(['pending', 'approved', 'rejected'])
+            .withMessage('Enter a valid status that dont execeed 50 letter')
+
+
+
+
+
+    ]
+}
