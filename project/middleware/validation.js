@@ -163,8 +163,6 @@ const albumValidation = {
 
     ]
 }
-
-
 const contributionValidation = {
     contribution: [
         body('title')
@@ -197,6 +195,126 @@ const contributionValidation = {
             .optional()
             .isDate()
             .withMessage('Enter a valid date'),
+
+
+
+    ]
+}
+const dailySermonValidation = {
+    uploadSermon: [
+        body('topic')
+            .trim()
+            .isLength({ max: 50 })
+            .isString()
+            .withMessage('Enter a valid Topic that dont exceed 50 letters'),
+        body('comment')
+            .optional()
+            .isObject()
+            .withMessage('Enter valid comment details'),
+        body('sermonComment.comment')
+            .optional()
+            .isString()
+            .isLength({ max: 200 })
+            .withMessage('Please try again and enter a commwnt that dont exceed 200 letters'),
+        body('SermonComment.createdAt')
+            .optional()
+            .isDate()
+            .withMessage('Enter a valid date'),
+        body('content')
+            .optional()
+            .isString()
+            .isLength({ max: 500 })
+            .withMessage('enter content of the sermon that donot exceed 500 letters'),
+        body('scriptureRef')
+            .optional()
+            .isString()
+            .isLength({ max: 100 })
+            .withMessage('Enter a valid scripture reference'),
+        body('weekIndentifier')
+            .notEmpty()
+            .isString()
+            .isLength({ max: 50 })
+            .withMessage('Enter a valid week indentifier '),
+        body('submissionDate')
+            .isDate()
+            .withMessage('Enter a valid date'),
+        body('isSellected')
+            .isBoolean()
+            .withMessage('Enter a valid boolean value')
+
+
+
+
+
+    ]
+}
+const eventValidation = {
+    Event: [
+        body('title')
+            .trim()
+            .isLength({ max: 50 })
+            .withMessage('Enter a valid title that dont exceed 50 letters'),
+        body('description')
+            .isLength({ max: 500 })
+            .withMessage('Enter a valid description that dont exceed 500 letters'),
+        body('date')
+            .isDate()
+            .withMessage('enter a valid date'),
+
+        body('EventComment')
+            .optional()
+            .isString()
+            .isLength({ max: 200 })
+            .withMessage('Please try again and enter a commwnt that dont exceed 200 letters'),
+        body('createdAt')
+            .optional()
+            .isDate()
+            .withMessage('Enter a valid date'),
+        body('location')
+            .trim()
+            .isLength({ max: 50, min: 3 })
+            .withMessage('Enter a valid location that dont exceed 50 letters'),
+        body('photo')
+            .optional()
+            .isObject()
+            .withMessage('Enter valid photo details'),
+        body('photo.url')
+            .optional()
+            .isString()
+            .withMessage('Enter valid photo url'),
+        body('photo.publicId')
+            .optional()
+            .isString()
+            .withMessage('Enter valid photo publicId'),
+        body('photo.alt')
+            .optional()
+            .isString()
+            .withMessage('Enter valid photo alt'),
+        body('task')
+            .notEmpty()
+            .isObject()
+            .withMessage('thetask should be valid object'),
+        body('task.todo')
+            .optional()
+            .isLength({ max: 100 })
+            .withMessage('Enter a valid todo that dont exceed 100 letters'),
+        body('task.completed.time')
+            .optional()
+            .isDate()
+            .withMessage('Enter a valid date'),
+        body('task.completed.status')
+            .optional()
+            .isBoolean()
+            .withMessage('Enter a valid boolean value'),
+        body('Rsvp')
+            .optional()
+            .isString()
+            .isLength({ max: 50 })
+            .withMessage('Enter a valid rsvp that dont exceed 50 letters')
+
+
+
+
 
 
 
