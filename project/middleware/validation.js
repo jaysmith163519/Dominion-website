@@ -387,3 +387,55 @@ const meetingValidation = {
 
     ]
 }
+const pollValidation = {
+    create: [
+        body('topic')
+            .notEmpty()
+            .isString()
+            .isLength({ max: 100, min: 5 })
+            .withMessage('enter a poll question that dont exceed 100 letters and not less than 5 letters'),
+        body('date')
+            .isDate()
+            .withMessage('enter a valid date'),
+        body('option')
+            .optional()
+            .isObject()
+            .withMessage('enter'),
+
+        body('expireAt')
+            .isDate()
+            .withMessage('enter a valid expiring date')
+
+
+
+    ]
+
+}
+const prayerValidation = {
+    create: [
+        body('request')
+            .notEmpty()
+            .isString()
+            .isLength({ max: 300, min: 5 })
+            .withMessage('enter a prayer request that dont exceed 300 letters and not less than 5 letters'),
+        body('anonymous')
+            .isBoolean()
+            .withMessage('enter valid boolean'),
+
+        body('status')
+            .optional()
+            .isIn(['Pending', 'Accepted', 'canceled', 'Active', 'Archieved'])
+            .withMessage('choose a valid status'),
+        body('status.createdAt')
+            .isDate()
+            .withMessage('enter a valid date'),
+        body('prayers')
+            .optional()
+            .isObject()
+            .withMessage('enter valid prayer details'),
+        body('prayers.createdAt')
+            .isDate()
+            .withMessage('enter a valid date')
+
+    ]
+}
