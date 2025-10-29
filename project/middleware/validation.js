@@ -348,3 +348,42 @@ const expenseValidation = {
 
     ]
 }
+const meetingValidation = {
+    create: [
+        body('topic')
+            .notEmpty()
+            .isString()
+            .isLength({ max: 50, min: 5 })
+            .withMessage('Enter a topic a valid topic that does not exceed 50 letters and not less than 5 letters'),
+        body("speaker")
+            .notEmpty()
+            .isMongoId()
+            .withMessage('enter the username'),
+        body('date')
+            .isDate()
+            .withMessage('enter a valid date'),
+        body('Videourl')
+            .optional()
+            .notEmpty()
+            .trim()
+            .matches(/^https:\/$/)
+            .withMessage('enter a valid url'),
+        body('presentationUrl')
+            .optional()
+            .trim()
+            .matches(/^https:\/$/)
+            .withMessage('enter a valid url'),
+        body('summary')
+            .isLength({ min: 3, max: 500 })
+            .isString()
+            .withMessage('enter summary of the meeting that dont exceed 500 letter and not less than  5 letters '),
+        body('weekIdentifier')
+            .notEmpty()
+            .isLength({ max: 50, min: 5 })
+            .withMessage('Enter a week identifier that dont exceed 50 letters and not less that 3 letters')
+
+
+
+
+    ]
+}
